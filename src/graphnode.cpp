@@ -11,7 +11,8 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    delete _chatBot; 
+    // Warm up exercise: delete _chatBot instance is causing the program to crash
+    // delete _chatBot; 
 
     ////
     //// EOF STUDENT CODE
