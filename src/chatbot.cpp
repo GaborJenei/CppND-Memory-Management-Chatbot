@@ -8,7 +8,7 @@
 #include "graphedge.h"
 #include "chatbot.h"
 
-// constructor WITHOUT memory allocation
+// 1. Constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
     // invalidate data handles
@@ -17,7 +17,7 @@ ChatBot::ChatBot()
     _rootNode = nullptr;
 }
 
-// constructor WITH memory allocation
+// 1. Constructor WITH memory allocation
 ChatBot::ChatBot(std::string filename)
 {
     std::cout << "ChatBot Constructor" << std::endl;
@@ -30,6 +30,7 @@ ChatBot::ChatBot(std::string filename)
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
+// 1. Destructor
 ChatBot::~ChatBot()
 {
     std::cout << "ChatBot Destructor" << std::endl;
@@ -44,6 +45,49 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+
+// // 2. Copy constructor (No Copy Policy)
+// ChatBot::ChatBot(const ChatBot &) = delete;
+
+// // 3. Copy assignment operator (No Copy Policy)
+// ChatBot::ChatBot &operator=(const ChatBot &) = delete;
+
+// 4. Move Constructor (Exclusive Ownership Policy)
+ChatBot::ChatBot(ChatBot &&source)
+{
+    std::cout << "ChatBot Move Constructor";
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+
+    source._image = NULL;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._currentNode = nullptr;
+}
+
+// 5. Move Assignment Operator (Exclusive Ownership Policy)
+ChatBot& ChatBot::operator=(ChatBot &&source)
+{
+    std::cout << "ChatBot Move Assignment Operator";
+    if (this == &source)
+        return *this;
+
+    delete _image;
+
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+
+    source._image = NULL;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._currentNode = nullptr;
+
+    return *this;
+}
 
 ////
 //// EOF STUDENT CODE
