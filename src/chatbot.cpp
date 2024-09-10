@@ -55,7 +55,7 @@ ChatBot::~ChatBot()
 // 4. Move Constructor (Exclusive Ownership Policy)
 ChatBot::ChatBot(ChatBot &&source)
 {
-    std::cout << "ChatBot Move Constructor";
+    std::cout << "ChatBot Move Constructor" << std::endl;
     _image = source._image;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
@@ -70,7 +70,7 @@ ChatBot::ChatBot(ChatBot &&source)
 // 5. Move Assignment Operator (Exclusive Ownership Policy)
 ChatBot& ChatBot::operator=(ChatBot &&source)
 {
-    std::cout << "ChatBot Move Assignment Operator";
+    std::cout << "ChatBot Move Assignment Operator" << std::endl;
     if (this == &source)
         return *this;
 
